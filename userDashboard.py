@@ -85,9 +85,9 @@ def userDashboard():
     dbConfig.mydb.commit()
     print(myCursor.rowcount, "vote(s) updated")
 
-    conti = input("Do you Use Your Other two Votes - y /n : ")
-    if conti == "y":
-        for count in range(2):
+    for count in range(2):
+        conti2 = input("Do you Use Your other Vote - y /n : ")
+        if conti2 == "y":
             print("")
             vote = input("Enter voting Nominate No : ")
             myCursor = dbConfig.mydb.cursor()
@@ -96,9 +96,10 @@ def userDashboard():
             myCursor.execute(sql, valueFinal)
             dbConfig.mydb.commit()
             print(myCursor.rowcount, "vote(s) updated")
-    else:
-        print("")
-        print("#######################")
-        print("# Thank for your Vote # ")
-        print("#######################")
-        exit()
+
+        else:
+            print("")
+            print("#######################")
+            print("# Thank for your Vote # ")
+            print("#######################")
+            exit()

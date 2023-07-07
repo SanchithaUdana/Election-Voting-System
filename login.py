@@ -11,13 +11,16 @@ def login():
     print("----------------------------------------------------------------------")
     print("")
     print("Are you User ?")
-    user = input("press y / n : ")
+    user = input("       press y / n : ")
+
     if user == "y":
         userDashboard.userDashboard()
-    else:
+
+    if user == "n":
         password = input("Enter Admin Password : ")
         if password == "1234":
             adminDashboard.adminDashboard()
         else:
             print("invalid password -  🛑 secure system exit enabled 🛑")
             exit()
+

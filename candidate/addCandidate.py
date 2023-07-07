@@ -3,7 +3,6 @@ import adminDashboard as dashboard
 
 
 def addCandidate():
-
     myCursor = dbConfig.mydb.cursor()
 
     print("---------------------")
@@ -17,6 +16,31 @@ def addCandidate():
     education = input("05. Enter candidate Education : ")
     party = input("06. Enter candidate Party : ")
     nominateNo = input("07. Enter candidate Nominate No : ")
+
+    nominateSql = "SELECT nic from candidate WHERE nominateNo = %s AND state = %s AND party = %s"
+    value = (nominateNo, state, party)
+    myCursor.execute(nominateSql, value)
+    resultCheck = myCursor.fetchall()
+    if myCursor.rowcount != 0:
+        print("")
+        print("Nominate Number Available (Registered)")
+        print("")
+        print("## Do you need add more ##")
+        addMore = input("press y / n : ")
+
+        if addMore == "y":
+            addCandidate()
+
+        print("")
+        print("## If you need ReDirect to Dashboard ##")
+        des = input("press y / n : ")
+        if des == "y":
+            dashboard.adminDashboard()
+        else:
+            print("")
+            print("Good Bye")
+            exit()
+
     defaultVote = 0
     sql = "INSERT INTO candidate VALUES (%s, %s, %s, %s, %s, %s, %s, %s)"
     val = (nic, name, age, state, education, party, nominateNo, defaultVote)
