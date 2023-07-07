@@ -34,6 +34,7 @@ def barChart():
 
     if cc == "2":
         plt.pie(votes, labels=names)
+        plt.title("Election Voting Result")
         plt.show()
 
     # ending selection
